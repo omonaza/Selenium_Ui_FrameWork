@@ -60,5 +60,31 @@ public class advancedMouseActions {
         //add code to hover over Interactions
 
 
+        WebElement interactions = driver.findElement(By.xpath("//div[text()='Interactions']"));
+        actions.moveToElement(interactions).perform();
+
+        //how to move to the buttom of the page?
+
+    }
+
+    @Test
+    public void testMovingTheSlider(){
+        driver.navigate().to("https://demoqa.com/slider");
+        WebElement slider = driver.findElement(By.xpath("//input[@type='range']"));
+        String defaultValue = slider.getAttribute("value");//25
+        Actions actions = new Actions(driver);
+        actions.clickAndHold(slider).moveByOffset(20, 0).release().perform();
+        String newValue = slider.getAttribute("value");
+        Assert.assertTrue(Integer.parseInt(newValue) > Integer.parseInt(defaultValue));
+    }
+    @Test
+    public void testDragAndDrop(){
+        driver.navigate().to("https://demoqa.com/droppable");
+        WebElement source = driver.findElement(By.id("draggable"));
+        WebElement target = driver.findElement(By.xpath("//div[@id='droppable'][1]"));
+        Actions actions = new Actions(driver);
+        actions.dragAndDrop(source,target).perform();
+        //Assert.assertTrue(target.getAttribute("class").contains("ui-state-highlight"));
+        Assert.assertTrue(target.getText().equals("Dropped!"));
     }
 }

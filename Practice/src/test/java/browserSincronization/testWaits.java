@@ -1,5 +1,6 @@
 package browserSincronization;
 
+import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
@@ -13,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
+
 
 public class testWaits {
     WebDriver driver;
@@ -71,5 +73,11 @@ public class testWaits {
 
         String pathToTheFile = "C:\\Users\\azaos\\OneDrive\\Desktop\\maxresdefault.jpg";
         fileUploadButton.sendKeys(pathToTheFile);
+    }
+
+    public static void main(String[] args) {
+        Faker f = new Faker();
+
+        System.out.println(f.name().firstName());
     }
 }
