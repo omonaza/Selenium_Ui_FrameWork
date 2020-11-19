@@ -1,42 +1,37 @@
 package pageNavigationAndDropDowns;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utilities1.Driver;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class practiceDropDown {
 
-    WebDriver driver;
+//    WebDriver driver;
 
-    @Before
-    public void setUp() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
-    }
+//    @Before
+//    public void setUp() {
+//       driver = Driver.getDriver();
+//    }
+
 
     @After
     public void tearDown() {
-        driver.close();
+        Driver.closeDriver();
     }
 
     @Test
     public void practiceSelectElement() {
-        driver.navigate().to("https://www.devxschool.com/enrollment/");
-        WebElement selectTag = driver.findElement(By.cssSelector("#form-field-ads"));
+        Driver.getDriver().navigate().to("https://www.devxschool.com/enrollment/");
+        WebElement selectTag = Driver.getDriver().findElement(By.cssSelector("#form-field-ads"));
         Select dropdown = new Select(selectTag);
         List<WebElement> allOptions = dropdown.getOptions();
         for (WebElement option : allOptions) {
@@ -56,8 +51,8 @@ public class practiceDropDown {
 
     @Test
     public void testMultiSelect() {
-        driver.navigate().to("https://www.jquery-az.com/boots/demo.php?ex=63.0_2");
-        WebElement selectElement = driver.findElement(By.xpath("//select[@id='option-droup-demo']"));
+        Driver.getDriver().navigate().to("https://www.jquery-az.com/boots/demo.php?ex=63.0_2");
+        WebElement selectElement = Driver.getDriver().findElement(By.xpath("//select[@id='option-droup-demo']"));
         Select dropdown = new Select(selectElement);
         Assert.assertTrue(dropdown.isMultiple());
         //1st way to deselect
@@ -92,16 +87,16 @@ public class practiceDropDown {
 
     @Test
     public void expediaTest() throws InterruptedException {
-        driver.get("https://www.expedia.com/");
+        Driver.getDriver().get("https://www.expedia.com/");
         try {
-            driver.findElement(By.xpath("//a[@aria-controls='wizard-cruise-pwa']")).click();
+            Driver.getDriver().findElement(By.xpath("//a[@aria-controls='wizard-cruise-pwa']")).click();
         } catch (ElementClickInterceptedException e) {
-            WebDriverWait wait = new WebDriverWait(driver, 8);
+            WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 8);
             wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[starts-with(text(),'You could be getting')]")));
-            driver.findElement(By.xpath("//div[text()='Sign in']/..")).click();
+            Driver.getDriver().findElement(By.xpath("//div[text()='Sign in']/..")).click();
         }
-        driver.findElement(By.xpath("//a[@aria-controls='wizard-cruise-pwa']")).click();
-        WebElement selectElement = driver.findElement(By.cssSelector("#cruise-destination"));
+        Driver.getDriver().findElement(By.xpath("//a[@aria-controls='wizard-cruise-pwa']")).click();
+        WebElement selectElement = Driver.getDriver().findElement(By.cssSelector("#cruise-destination"));
         Select dropdown = new Select(selectElement);
         //select Alaska by value
         dropdown.selectByValue("alaska");
