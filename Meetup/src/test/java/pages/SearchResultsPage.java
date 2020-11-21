@@ -11,6 +11,7 @@ import java.util.List;
 public class SearchResultsPage extends FooterPage {
 
     public SearchResultsPage() {
+        // PageFactory is a class in selenium , we use initialize webelement
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
@@ -37,10 +38,10 @@ public class SearchResultsPage extends FooterPage {
                actions.moveToElement(tomorrowOption).click().perform();
     }
 
-    @FindBy(tagName = "time[1]")
+    @FindBy(xpath = "//div[@class='css-ai9mht']//time[1]")
     public List<WebElement> searchResultsDate;
 
 
-    @FindBy(xpath = "//div[starts-with(@data-element-name, 'searchResults-eventCard-272846838!chp')][1]      ")
+    @FindBy(xpath = "//div[starts-with(@data-element-name, 'searchResults-eventCard-272846838!chp')][1]")
     public WebElement firstSearchResultDate;
 }

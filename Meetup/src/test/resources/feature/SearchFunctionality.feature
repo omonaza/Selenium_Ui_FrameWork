@@ -1,11 +1,13 @@
+@search
 Feature: Search Functionality
+
 Background:
   Given  user navigates to Meet up application login page
-  When the user types "conference" in the search field
+  When the user types "Conference" in the search field
   And the user hits Search button
   Scenario: Verify search results - title
     And the user hits Search button
-    Then verify all search results contain "conference" in the title
+    Then verify all search results contain "Conference" in the title
 
      #implement a scenario
   @search

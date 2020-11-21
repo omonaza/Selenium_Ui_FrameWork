@@ -30,11 +30,13 @@ public class SearchFunctionalitySteps {
 
     @Then("^verify all search results contain \"([^\"]*)\" in the title$")
     public void verify_all_search_results_contain_in_the_title(String  searchCriteria) throws Throwable {
+
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 7);
         wait.until(ExpectedConditions.visibilityOf(searchResultsPage.firstSearchResult));
 
         for(WebElement resultTile: searchResultsPage.searchResultsTitles){
-            Assert.assertTrue(resultTile.getText().toLowerCase().contains(searchCriteria));
+            Assert.assertTrue(resultTile.getText().toUpperCase().contains(searchCriteria));
+            System.out.println(resultTile.getText());
         }
 
 
@@ -43,6 +45,7 @@ public class SearchFunctionalitySteps {
     @And("^the user selects tomorrow from a dates dropdown$")
     public void theUserSelectsTomorrowFromADatesDropdown() {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 7);
+
         wait.until(ExpectedConditions.visibilityOf(searchResultsPage.DropDownButton));
         searchResultsPage.setDropDownButton();
 
@@ -56,7 +59,8 @@ public class SearchFunctionalitySteps {
 
 
         for(WebElement resultTile: searchResultsPage.searchResultsDate){
-            Assert.assertTrue(resultTile.getText().toLowerCase().contains("NOV 20"));
+            Assert.assertTrue(resultTile.getText().startsWith("FRI,NOV 20"));
+            System.out.println("this are dates -----> " +resultTile.getText());
         }
     }
 }
