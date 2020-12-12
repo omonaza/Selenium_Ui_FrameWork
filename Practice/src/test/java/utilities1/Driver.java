@@ -1,5 +1,6 @@
 package utilities1;
 import org.openqa.selenium.WebDriver;
+import sauceLabs.SauceLabsDriver;
 
 public class Driver {
     //this will be our driver controller
@@ -20,7 +21,9 @@ public class Driver {
                 case "firefox":
                     driver = FireFoxWebDriver.loadFireFoxDriver();
                     break;
-
+                case "saucelabs":
+                    driver = SauceLabsDriver.loadSauceLabsDriver();
+                    break;
             }
         }
         return driver;

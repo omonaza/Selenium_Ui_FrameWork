@@ -35,6 +35,7 @@ public class AlertClassPractise {
         actions.doubleClick(doubleClickButton).perform();
         Alert alert = driver.switchTo().alert();
         Assert.assertTrue(alert.getText().contains("You double clicked me!!!"));
+        System.out.println("alert double click message---> " +alert.getText());
         alert.accept();
 
 
@@ -44,14 +45,17 @@ public class AlertClassPractise {
     }
 
     @Test
-    public void promtAlertTest(){
+    public void promtAlertTest()throws InterruptedException{
         driver.navigate().to("https://chercher.tech/practice/practice-pop-ups-selenium-webdriver");
-        driver.findElement(By.xpath("//input[@value='Prompt']")).click();
+        driver.findElement(By.xpath("//input[@name='prompt']")).click();
         Alert alert = driver.switchTo().alert();
         Assert.assertTrue(alert.getText().contains("I am prompt"));
-        String info = "Abcd";
+        Thread.sleep(3000);
+        String info = "Abcddafeasfcafcacfawfcaf";
+        Thread.sleep(3000);
         alert.sendKeys(info);
         alert.accept();
+
     }
 
     @Test
@@ -60,6 +64,7 @@ public class AlertClassPractise {
         driver.findElement(By.xpath("//input[@value='Confirmation Box']")).click();
         Alert alert = driver.switchTo().alert();
         Assert.assertTrue(alert.getText().contains("I am confirm"));
+        System.out.println("alert message---> " +alert.getText());
         alert.dismiss();
     }
 

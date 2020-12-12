@@ -8,6 +8,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -18,8 +19,8 @@ public class BasicLocatorsTest {
     @Test
     public void testLocator() throws InterruptedException {
         // to set up the driver instead of System.Property we will use methods from bonigarcia management
-        WebDriverManager.chromedriver().setup();
-        WebDriver webDriver = new ChromeDriver();
+        WebDriverManager.firefoxdriver().setup();
+        WebDriver webDriver = new FirefoxDriver();
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         webDriver.get("https://www.amazon.ae/");
         WebElement hamburgerMenuLink = webDriver.findElement(By.id("nav-hamburger-menu"));

@@ -12,8 +12,8 @@ import org.junit.runner.RunWith;
 
         features = {"classpath:feature"},
         glue = {"steps"},
-        tags = {"@search"},
-        dryRun =false
+      //  tags = {"@search"},
+        dryRun =true
 
 
 )
