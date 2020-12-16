@@ -19,10 +19,10 @@ public class Employee {
     private static String qGetEmployeeLastName = "SELECT * FROM employees WHERE lastName = ?;";
     private static String getAllEmployeesNumbers = "SELECT employeeNumber FROM employees;";
 
-//    public static List<Employee> getEmployeeNumber() {
-//       return DBUtilV2.query(getAllEmployeesNumbers,Employee.class);
-//
-//    }
+    public static List<Employee> getEmployeeNumbers() {
+       return DBUtilV2.query(getAllEmployeesNumbers,Employee.class);
+
+    }
 
     public static List<Employee> getAll() {
         return DBUtilV2.query(queryAll, Employee.class);
@@ -40,6 +40,20 @@ public class Employee {
             return null;
         else return employeeList.get(0);
     }
+
+    //    public Employee(ResultSet rs) throws SQLException {
+//        this.employeeNumber = rs.getInt("employeeNumber");
+//        this.lastName = rs.getString("lastName");
+//        //...
+//    }
+
+//    public static List<Employee> generateAll(ResultSet resultSet) throws SQLException {
+//        List<Employee> ls = new ArrayList<>();
+//        while (resultSet.next()) {
+//            ls.add(new Employee(resultSet));
+//        }
+//        return ls;
+//    }
 
 
 }

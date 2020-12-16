@@ -3,6 +3,7 @@ package DBpractise;
 import DBpractise.DBModels.CustEmployee;
 import DBpractise.DBModels.Employee;
 import DBpractise.DBModels.OrderDetails;
+import DBpractise.DBModels.Product;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -93,14 +94,14 @@ public class DbUtilTest {
         Assert.assertEquals(expectedFirstName,actualFirstName);
     }
 
-//    @Test
-//    public void test6(){
-//        double expectedCreditLimit = 227600.00;
-//        double actualCreditLimit = (double) DBUtil.queryWithParam(qLargestPayment).get(0).get("creditLimit");
-//        Assert.assertEquals(expectedCreditLimit, actualCreditLimit, 0.0);
-//        System.out.println(DBUtil.queryWithParam(qLargestPayment).get(0).get("creditLimit"));
-//
-//    }
+    @Test
+    public void test(){
+        double expectedCreditLimit = 227600.00;
+        double actualCreditLimit = (double) DBUtil.queryWithParam(qLargestPayment).get(0).get("creditLimit");
+        Assert.assertEquals(expectedCreditLimit, actualCreditLimit, 0.0);
+        System.out.println(DBUtil.queryWithParam(qLargestPayment).get(0).get("creditLimit"));
+
+    }
 
     @Test
     public void test6() {
@@ -112,15 +113,16 @@ public class DbUtilTest {
     public void test7() {
         Assert.assertTrue(Employee.getByLastName("Andy") == null);
     }
+
     @Test
     public void test8() {
        Employee.getAll().forEach(System.out::println);
 
     }
-//    @Test
-//    public void test9() {
-//        Employee.getEmployeeNumber().forEach(System.out::println);
-//    }
+    @Test
+    public void test9() {
+        Employee.getEmployeeNumbers().forEach(System.out::println);
+    }
 
     @Test
     public void test10() {
@@ -141,5 +143,84 @@ public class DbUtilTest {
         Assert.assertTrue(fromDB != null);
         Assert.assertEquals("Objects are not equal!", fromUI, fromDB);
     }
+    @Test
+    public void prodTest() {
+
+        Product.getAll().forEach(System.out::println);
+//        List<Product> products = Product.getAll();
+//        for (Product p : products) {
+//            System.out.println(p);
+//        }
+    }
+
+    @Test
+    public void prodById1() {
+        Product p1 = Product.getByIdFormApi("101");
+        Product p2 = Product.getById("101");
+        Assert.assertEquals(p1, p2);
+    }
+
+    @Test
+    public void prodById2() {
+        Product p1 = Product.getByIdFormApi("102");
+        Product p2 = Product.getById("102");
+        Assert.assertEquals(p1, p2);
+
+
+    }
+
+    @Test
+    public void custEmployee(){
+        CustEmployee.getAll().forEach(System.out::println);
+    }
+
+
+
+
+    //    @Test
+//    public void productsByProdLine(String prodLIne) {
+//        List<Product> motorcycles = Product.getByProdLine(prodLIne);
+//        WebDriver driver = new ChromeDriver();
+//        LoginPage.login("user", "password");
+//        LoginPage.goProductsPage();
+//        LoginPage.search(prodLIne);
+//
+//        List<WebElement> motorcyclesNames = driver.findElements(By.cssSelector(".h6.cmp-bike-cards__title"));
+//        for (Product motorcycle : motorcycles) {
+//            if (motorcyclesNames.contains(motorcycle.getProd_name()))
+//                motorcycles.remove(motorcycle);
+//        }
+//        Assert.assertTrue("Products not listed IN UI:" + motorcycles, motorcycles.isEmpty());
+//    }
+//
+//    @Test
+//    public void validateMOtorcycles() {
+//        validateProductExistsInUiByProdLine("Motorcycle");
+//    }
+//
+//    @Test
+//    public void validatePlanes() {
+//        validateProductExistsInUiByProdLine("Planes");
+//    }
+//
+//    @Test
+//    public void validateShips() {
+//        validateProductExistsInUiByProdLine("Ships");
+//    }
+
+//    private void validateProductExistsInUiByProdLine(String prodLine) {
+//            List<Product> motorcycles = Product.getByProdLine(prodLIne);
+//            WebDriver driver = new ChromeDriver();
+//            LoginPage.login("user", "password");
+//            LoginPage.goProductsPage();
+//            LoginPage.search(prodLIne);
+//
+//            List<WebElement> motorcyclesNames = driver.findElements(By.cssSelector(".h6.cmp-bike-cards__title"));
+//            for (Product motorcycle : motorcycles) {
+//                if (motorcyclesNames.contains(motorcycle.getProd_name()))
+//                    motorcycles.remove(motorcycle);
+//            }
+//            Assert.assertTrue("Products not listed IN UI:" + motorcycles, motorcycles.isEmpty());
+//        }
 
 }
